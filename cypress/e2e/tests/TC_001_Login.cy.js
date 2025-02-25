@@ -5,10 +5,10 @@ describe('Login', () => {
   it('Login to elsa', () => {
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));
-    cy.log('Base URL:', Cypress.env('Url'));
+    cy.log('Base URL:', Cypress.env('baseUrl'));
 
     // Visit the website
-    cy.visit(Cypress.env('Url'));
+    cy.visit(Cypress.env('baseUrl'));
 
     // Login
     LoginAction.login(testData.username, testData.password);

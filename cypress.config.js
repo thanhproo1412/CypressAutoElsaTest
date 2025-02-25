@@ -1,5 +1,18 @@
-const { defineConfig } = require('cypress');
+const { defineConfig } = require("cypress");
+const path = require("path");
+const fs = require("fs");
 
+function loadConfigFile(env) {
+  const configPath = path.resolve(__dirname, `./config/${env}.config.js`);
+
+  if (fs.existsSync(configPath)) {
+    console.log(`✅ Loading config from: ${configPath}`);
+    return require(configPath);
+  } else {
+    console.warn(`⚠️ Config file for '${env}' not found. Using default.`);
+    return {};
+  }
+}
 
 module.exports = defineConfig({
   projectId: "hgwkwi",
@@ -13,21 +26,37 @@ module.exports = defineConfig({
     },
   },
 
-  reporter: 'cypress-multi-reporters',
+  reporter: "cypress-multi-reporters",
   reporterOptions: {
-    configFile: 'reporterConfig.json',
+    configFile: "reporterConfig.json",
   },
 
-  e2e: {
+  env: {
+    envName: "Default",
     baseUrl: "https://the-internet.herokuapp.com/",
+  },
+  e2e: {
     setupNodeEvents(on, config) {
+      // Ensure this runs only in Node.js
+      const env = config.env.configFile || "qa"; // Default to "qa"
+      const externalConfig = loadConfigFile(env);
 
+      // Merge external env variables
+      config.env = { ...config.env, ...externalConfig.env };
+
+      console.log("🔹 Final merged env:", config.env);
+
+      // Must return updated config
+      return config;
     },
-    specPattern: 'cypress/(integration|e2e)/**/*.cy.{js,jsx,ts,tsx}',
+
+    // Default baseUrl (can be overridden in external config)
+
+    specPattern: "cypress/(integration|e2e)/**/*.cy.{js,jsx,ts,tsx}",
   },
 
-  "video": true,
-  "videosFolder": "cypress/videos",
-  "videoCompression": false,
-  "trashAssetsBeforeRuns": true
+  video: true,
+  videosFolder: "cypress/videos",
+  videoCompression: false,
+  trashAssetsBeforeRuns: true,
 });
