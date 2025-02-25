@@ -1,17 +1,15 @@
-export default class LoginPage {
-
-  //Basic Auth
-  getInputUsername() {
-    return cy.get('input[placeholder="Username or Email"]');
+class LoginPage {
+  static getInputUsername() {
+    return cy.get('div.sign-in input[name="email"]');
   }
 
-  getInputPassword() {
-    return cy.get('input[placeholder="Password"]');
+  static getInputPassword() {
+    return cy.get('div.sign-in input[name="password"]');
   }
 
-  getLoginBtn() {
-    return cy.contains('div', 'Log In');
+  static getLoginBtn() {
+    return cy.contains('div button', 'Sign in');
   }
-
-
 }
+
+export default LoginPage;

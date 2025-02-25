@@ -1,16 +1,11 @@
-import LoginPage from './LoginPage.js'
-
-const loginPage = new LoginPage()
+import LoginPage from './LoginPage.js';
 
 class LoginAction {
-
-    // action: verify the content text in ABTestingPage
-    login(Username, psw) {
-        loginPage.getInputUsername().type(Username);
-        loginPage.getInputPassword().type(psw);
-        loginPage.getLoginBtn().click()
+    static login(Username, psw) {
+        LoginPage.getInputUsername().type(Username);
+        LoginPage.getInputPassword().type(psw);
+        LoginPage.getLoginBtn().click();
     }
-
 }
 
 export default LoginAction;

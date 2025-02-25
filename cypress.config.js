@@ -1,6 +1,5 @@
-const {
-  defineConfig
-} = require("cypress");
+const { defineConfig } = require('cypress');
+
 
 module.exports = defineConfig({
   projectId: "hgwkwi",
@@ -19,19 +18,16 @@ module.exports = defineConfig({
     configFile: 'reporterConfig.json',
   },
 
-
   e2e: {
-    baseUrl: "https://the-internet.herokuapp.com/", // URL API
+    baseUrl: "https://the-internet.herokuapp.com/",
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-    specPattern: 'cypress/(integration|e2e)/**/*.cy.{js,jsx,ts,tsx}'
 
+    },
+    specPattern: 'cypress/(integration|e2e)/**/*.cy.{js,jsx,ts,tsx}',
   },
 
-  "video": true,  // Enable video recording
-  "videosFolder": "cypress/videos",  // Folder where videos will be saved
-  "videoCompression": false,  // Disable video compression (optional)
-  "trashAssetsBeforeRuns": true  // Optionally clear assets before runs
-
+  "video": true,
+  "videosFolder": "cypress/videos",
+  "videoCompression": false,
+  "trashAssetsBeforeRuns": true
 });
