@@ -17,7 +17,7 @@
     "start": "cypress run",
     "cy:report": "cypress run && opn ./cypress/reports/mochawesome/mochawesome.html",
     "report": "cypress run  --reporter-options configFile=reporterConfig.json",
-    "start:qa": "npx cypress open --config-file /cypress/config/cypress.qa.json"
+    "start:qa": "npx cypress open --env configFile=qa"
   },
   "dependencies": {
     "cypress-real-events": "^1.13.0",

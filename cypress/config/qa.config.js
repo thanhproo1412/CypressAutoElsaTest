@@ -1,16 +1,8 @@
-const { defineConfig } = require("cypress");
-
-module.exports = defineConfig({
+module.exports = {
   env: {
     envName: "qa",
-    baseUrl: "https://speechanalyzer.elsaspeak.com/sign-in",
+    baseUrl: "https://speechanalyzer.elsaspeak.com", // ✅ Custom baseUrl
     username: "qa-username",
     password: "qa-password",
   },
-
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
-  },
-});
+};

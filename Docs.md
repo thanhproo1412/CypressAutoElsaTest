@@ -11,3 +11,5 @@
 
 - Start with selected env
   npm run start:qa
+  or
+  npx cypress open --env configFile=qa

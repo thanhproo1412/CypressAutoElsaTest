@@ -1,0 +1,41 @@
+import SignUpAction from '../../support/pages/SignUpPage/SignUpAction';
+import { generateRandom20DigitNumber } from '../../support/supportFunction/Random';
+
+describe('Sign Up Test', () => {
+  it('Sign up with dynamic user data', () => {
+    // Log environment details
+    cy.log('Environment:', Cypress.env('envName'));
+    cy.log('Base URL:', Cypress.env('baseUrl'));
+
+    // Generate random ID
+    const random_id = generateRandom20DigitNumber();
+    const testDataFilename = 'cypress/fixtures/testData/TC_002_SignUp.json';
+    const expectedFilename = 'cypress/fixtures/expectedData/TC_002_SignUp.json';
+
+    // Read test data, update it, and write it back -> Soo i can using file expectedData to compare data if needed
+    cy.readFile(testDataFilename, 'utf8').then((fileData) => {
+      fileData.name = "AutoTest" + random_id;
+      fileData.email = "AutoTest" + random_id + '@yopmail.com';
+
+      // Update expected data file first
+      return cy.writeFile(expectedFilename, fileData).then(() => {
+        cy.log('Updated Expected Data File Successfully');
+        return cy.writeFile(testDataFilename, fileData);
+      });
+    }).then(() => {
+      cy.log('Updated Test Data File Successfully');
+
+      // Load updated test data dynamically
+      cy.fixture('testData/TC_002_SignUp').then((testData) => {
+        // Visit sign-up page
+        cy.visit(Cypress.env('baseUrl') + '/sign-up');
+
+        // Perform sign-up action
+        SignUpAction.signUp(testData.name, testData.email, testData.password);
+
+        // Verify successful sign-up
+        cy.url().should('include', '/welcome');
+      });
+    });
+  });
+});

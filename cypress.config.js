@@ -3,21 +3,22 @@ const path = require("path");
 const fs = require("fs");
 
 function loadConfigFile(env) {
-  const configPath = path.resolve(__dirname, `./config/${env}.config.js`);
+  const configPath = path.resolve(__dirname, `./cypress/config/${env}.config.js`);
 
   if (fs.existsSync(configPath)) {
     console.log(`✅ Loading config from: ${configPath}`);
     return require(configPath);
-  } else {
-    console.warn(`⚠️ Config file for '${env}' not found. Using default.`);
-    return {};
   }
+  
+  console.warn(`⚠️ Config file for '${env}' not found at ${configPath}. Using default.`);
+  return {};
 }
 
 module.exports = defineConfig({
   projectId: "hgwkwi",
   viewportWidth: 1920,
   viewportHeight: 1080,
+  defaultCommandTimeout: 40000,
 
   component: {
     devServer: {
@@ -27,32 +28,32 @@ module.exports = defineConfig({
   },
 
   reporter: "cypress-multi-reporters",
-  reporterOptions: {
-    configFile: "reporterConfig.json",
-  },
+  reporterOptions: { configFile: "reporterConfig.json" },
 
   env: {
     envName: "Default",
     baseUrl: "https://the-internet.herokuapp.com/",
   },
+
   e2e: {
     setupNodeEvents(on, config) {
-      // Ensure this runs only in Node.js
-      const env = config.env.configFile || "qa"; // Default to "qa"
-      const externalConfig = loadConfigFile(env);
+      const env = config.env.configFile || process.env.CYPRESS_CONFIG_FILE || "qa";
+      console.log(`🛠 Loading environment: ${env}`);
 
-      // Merge external env variables
+      const externalConfig = loadConfigFile(env);
       config.env = { ...config.env, ...externalConfig.env };
 
-      console.log("🔹 Final merged env:", config.env);
+      if (externalConfig.env?.baseUrl) {
+        config.baseUrl = externalConfig.env.baseUrl;
+      }
 
-      // Must return updated config
+      console.log("🔹 Final merged env:", JSON.stringify(config.env, null, 2));
+      console.log("🌐 Final baseUrl:", config.baseUrl);
+
       return config;
     },
 
-    // Default baseUrl (can be overridden in external config)
-
-    specPattern: "cypress/(integration|e2e)/**/*.cy.{js,jsx,ts,tsx}",
+    specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
   },
 
   video: true,
