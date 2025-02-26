@@ -22,6 +22,12 @@ class SignUpPage {
 
   }
 
+  static get getErrorMessage() {
+    return cy.get('div.login-selection__title');
+
+  }
+
+  
 
 
 }

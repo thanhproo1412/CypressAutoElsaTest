@@ -9,8 +9,8 @@ describe('Sign Up Test', () => {
 
     // Generate random ID
     const random_id = generateRandom20DigitNumber();
-    const testDataFilename = 'cypress/fixtures/testData/TC_002_SignUp.json';
-    const expectedFilename = 'cypress/fixtures/expectedData/TC_002_SignUp.json';
+    const testDataFilename = 'cypress/fixtures/testData/TC_004_SignUp.json';
+    const expectedFilename = 'cypress/fixtures/expectedData/TC_004_SignUp.json';
 
     // Read test data, update it, and write it back -> Soo i can using file expectedData to compare data if needed
     cy.readFile(testDataFilename, 'utf8').then((fileData) => {
@@ -26,7 +26,7 @@ describe('Sign Up Test', () => {
       cy.log('Updated Test Data File Successfully');
 
       // Load updated test data dynamically
-      cy.fixture('testData/TC_002_SignUp').then((testData) => {
+      cy.fixture('testData/TC_004_SignUp').then((testData) => {
         // Visit sign-up page
         cy.visit(Cypress.env('baseUrl') + '/sign-up');
 
