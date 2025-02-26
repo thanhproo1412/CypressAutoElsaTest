@@ -15,7 +15,7 @@ function loadConfigFile(env) {
 }
 
 module.exports = defineConfig({
-  projectId: "hgwkwi",
+  projectId: "g6phxy",
   viewportWidth: 1920,
   viewportHeight: 1080,
   defaultCommandTimeout: 40000,
