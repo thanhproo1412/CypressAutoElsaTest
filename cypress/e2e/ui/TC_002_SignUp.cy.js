@@ -1,4 +1,4 @@
-import SignUpAction from '../../support/pages/SignUpPage/SignUpAction';
+import SignUpAction from '../../support/pages/ui/SignUpPage/SignUpAction';
 import { generateRandom20DigitNumber } from '../../support/supportFunction/Random';
 
 describe('Sign Up Test', () => {

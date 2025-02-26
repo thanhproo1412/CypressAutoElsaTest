@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   env: {
     envName: "qa",
-    baseUrl: "https://speechanalyzer.elsaspeak.com/sign-in",
+    baseUrl: "https://speechanalyzer.elsaspeak.com",
     username: "qa-username",
     password: "qa-password",
   },

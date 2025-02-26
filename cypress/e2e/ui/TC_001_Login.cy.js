@@ -1,5 +1,5 @@
 import testData from '../../fixtures/testData/TC_001_Login.json';
-import LoginAction from '../../support/pages/LoginPage/LoginAction';
+import LoginAction from '../../support/pages/ui/LoginPage/LoginAction';
 
 describe('Login', () => {
   it('Login to elsa', () => {
