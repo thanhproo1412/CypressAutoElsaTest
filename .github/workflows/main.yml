@@ -1,4 +1,4 @@
-name: Cypress Tests 
+name: Cypress Tests
 on:
   workflow_dispatch:
 
@@ -22,9 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start application
-        run: |
-          start /B cmd /C "npm start"
+      - name: Start application (background)
+        run: cmd /c "start /B npm start"
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
