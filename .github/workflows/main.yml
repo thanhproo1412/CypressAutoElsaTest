@@ -23,7 +23,8 @@ jobs:
         run: npm install
 
       - name: Start application
-        run: Start-Process -NoNewWindow -FilePath "npm" -ArgumentList "start"
+        run: |
+          start /B cmd /C "npm start"
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
