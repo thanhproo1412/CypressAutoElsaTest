@@ -1,25 +1,37 @@
-name: Cypress Tests
+name: Cypress Tests 
 on:
   workflow_dispatch:
+
 jobs:
   cypress-run:
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome, firefox, edge] # Specify the browsers you want to test
-        # containers: [1, 2]  <- Remove or adjust if you still need parallel containers
+        browser: [chrome, firefox, edge] # Specify browsers
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Cypress run
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'latest' # Always fetch the latest Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start application
+        run: Start-Process -NoNewWindow -FilePath "npm" -ArgumentList "start"
+
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm start # Or your start command
-          # wait-on: "http://localhost:3000 --timeout 120000"
-          record: true
-          # parallel: true <- Remove or adjust if you still need parallel containers
           browser: ${{ matrix.browser }} # Use matrix value for browser
+          record: true
+          wait-on: "http://localhost:3000" # Ensure app is ready
+          wait-on-timeout: 120 # 120 seconds timeout
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
