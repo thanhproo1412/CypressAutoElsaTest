@@ -26,11 +26,13 @@ jobs:
         run: cmd /c "start /B npm start"
 
       - name: Wait for application to be available
+        shell: pwsh
         run: |
-          while ! curl --silent --fail http://localhost:3000; do
-            echo "Waiting for application to be available..."
-            sleep 5
-          done
+          while (!(Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing -ErrorAction SilentlyContinue)) {
+            Write-Host "Waiting for application to be available..."
+            Start-Sleep -Seconds 5
+          }
+      
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
