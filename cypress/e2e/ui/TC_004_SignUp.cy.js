@@ -34,10 +34,50 @@ describe('Sign Up Test', () => {
         SignUpAction.signUp(testData.name, testData.email, testData.password);
 
 
+        cy.window().then((win) => {
+          const accessToken = win.sessionStorage.getItem('accessToken'); // Use the exact key from DevTools
+        
+          if (accessToken) {
+            cy.log(`Access Token Before: ${accessToken}`);  // Cypress UI log
+          } else {
+            cy.log('No Access Token Found in sessionStorage!');
+          }
+        });
+
+
+        
+        
+
+
         // Verify successful sign-up
         cy.url().should('include', '/welcome');
 
         cy.wait(5000); // Wait for 5 seconds
+
+
+
+
+
+
+
+        cy.window().then((win) => {
+          const accessToken = win.sessionStorage.getItem('accessToken'); // Use the exact key from DevTools
+        
+          if (accessToken) {
+            cy.log(`Access Token After: ${accessToken}`);  // Cypress UI log
+          } else {
+            cy.log('No Access Token Found in sessionStorage!');
+          }
+        });
+        
+
+
+
+
+
+
+
+
 
         cy.end();
 
