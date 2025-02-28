@@ -8,7 +8,7 @@ class SignUpAction {
         SignUpPage.getInputFullName.type(name);
         SignUpPage.getInputEmail.type(email);
         SignUpPage.getInputPassword.type(password);
-        SignUpPage.getBtnSignUp.click({ force: true });
+        SignUpPage.getBtnSignUp.click();
 
     }
 
