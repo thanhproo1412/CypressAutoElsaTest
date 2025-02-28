@@ -17,6 +17,7 @@ describe('Login', () => {
     // cy.url().should('include', '/welcome');
     cy.wait(5000); // Wait for 5 seconds
 
+    cy.end();
 
 
   });

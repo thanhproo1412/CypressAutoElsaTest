@@ -35,10 +35,12 @@ describe('Sign Up Test', () => {
 
 
         // Verify successful sign-up
-        cy.wait(60000); // add wait 
         cy.url().should('include', '/welcome');
 
         cy.wait(5000); // Wait for 5 seconds
+
+        cy.end();
+
 
       });
     });

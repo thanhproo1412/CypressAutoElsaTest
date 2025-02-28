@@ -19,6 +19,8 @@ describe('Sign Up Test', () => {
 
     cy.wait(5000); // Wait for 5 seconds
 
+    cy.end();
+
 
   });
 });

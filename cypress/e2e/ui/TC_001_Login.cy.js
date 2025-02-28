@@ -8,7 +8,7 @@ describe('Login', () => {
     cy.log('Base URL:', Cypress.env('baseUrl'));
 
     // Visit the website
-    cy.visit(Cypress.env('baseUrl')+'/sign-in');
+    cy.visit(Cypress.env('baseUrl') + '/sign-in');
 
     // Login
     LoginAction.login(testData.username, testData.password);
@@ -17,6 +17,7 @@ describe('Login', () => {
     // cy.url().should('include', '/welcome');
     cy.wait(5000); // Wait for 5 seconds
 
+    cy.end();
 
 
   });
