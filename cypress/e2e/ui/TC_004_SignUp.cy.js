@@ -2,7 +2,7 @@ import SignUpAction from '../../support/pages/ui/SignUpPage/SignUpAction';
 import { generateRandom20DigitNumber } from '../../support/supportFunction/Random';
 
 describe('Sign Up Test', () => {
-  it('Sign up with dynamic user data', () => {
+  it('Verify SignUp with valid details', () => {
     // Log environment details
     cy.log('Environment:', Cypress.env('envName'));
     cy.log('Base URL:', Cypress.env('baseUrl'));

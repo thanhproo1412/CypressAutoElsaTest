@@ -2,7 +2,7 @@ import testData from '../../fixtures/testData/TC_002_Login_invalid_credentials.j
 import LoginAction from '../../support/pages/ui/LoginPage/LoginAction';
 
 describe('Login', () => {
-  it('Login to elsa', () => {
+  it('Verify login with blank fields', () => {
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));
     cy.log('Base URL:', Cypress.env('baseUrl'));

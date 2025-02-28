@@ -2,7 +2,7 @@ import testData from '../../fixtures/testData/TC_007_Login_with_special_characte
 import LoginAction from '../../support/pages/ui/LoginPage/LoginAction';
 
 describe('Login', () => {
-  it('Login to elsa', () => {
+  it('Verify login with special characters in the email field', () => {
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));
     cy.log('Base URL:', Cypress.env('baseUrl'));

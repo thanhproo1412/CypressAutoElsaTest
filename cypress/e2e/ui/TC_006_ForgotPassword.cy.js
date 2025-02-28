@@ -1,8 +1,8 @@
 import testData from '../../fixtures/testData/TC_006_ForgotPassword.json';
 import LoginAction from '../../support/pages/ui/LoginPage/LoginAction';
 
-describe('Login', () => {
-  it('Login to elsa', () => {
+describe('Forgot password func', () => {
+  it('Verify password reset functionality', () => {
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));
     cy.log('Base URL:', Cypress.env('baseUrl'));

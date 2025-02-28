@@ -2,7 +2,7 @@ import SignUpAction from '../../support/pages/ui/SignUpPage/SignUpAction';
 import testData from '../../fixtures/testData/TC_005_SignUp_already_registered_email.json'
 
 describe('Sign Up Test', () => {
-  it('Sign up with dynamic user data', () => {
+  it('Verify SignUp with an already registered email', () => {
 
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));

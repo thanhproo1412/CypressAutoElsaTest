@@ -2,7 +2,7 @@ import testData from '../../fixtures/testData/TC_001_Login.json';
 import LoginAction from '../../support/pages/ui/LoginPage/LoginAction';
 
 describe('Login', () => {
-  it('Login to elsa', () => {
+  it('Verify login with valid credentials', () => {
     // Log the environment details
     cy.log('Environment:', Cypress.env('envName'));
     cy.log('Base URL:', Cypress.env('baseUrl'));
